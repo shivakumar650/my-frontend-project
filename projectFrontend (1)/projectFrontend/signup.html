@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount and Offers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to match the provided image */
+        body {
+            background: linear-gradient(135deg, #fce181, #e0c3fc);
+            /* Match gradient colors */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 64px;
+            font-family: 'sans-serif';
+            color: #222;
+            /* Dark text color */
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background-color: white;
+            /* White navbar */
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav .font-bold {
+            font-size: 1.25rem;
+            /* Match logo size */
+            color: #222;
+            /* Dark logo text */
+        }
+
+        nav a,
+        nav button {
+            font-size: 0.875rem;
+            /* Match nav link size */
+            color: #222;
+            /* Dark nav link text */
+            margin-left: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            /* Remove underline */
+            font-weight: bold;
+            /* Make nav links bold */
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            padding: 0;
+            font-weight: bold;
+            /* Make nav button text bold */
+        }
+
+        .form-container {
+            display: none;
+            /* Initially hide the form */
+            background-color: white;
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+            /* Increased shadow */
+            border-radius: 0.75rem;
+            /* More rounded */
+            padding: 2.5rem;
+            /* Increased padding */
+            width: 90%;
+            max-width: 480px;
+            /* Adjust max width */
+            margin-top: 2rem;
+            opacity: 0;
+            /* Initially transparent */
+            transform: translateY(-20px);
+            /* Slightly shifted up */
+            animation: fade-in 0.3s forwards ease-out;
+            /* Fade-in animation */
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Styling */
+        .form-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            /* Increased heading margin */
+            text-align: center;
+            color: #4a5568;
+            /* Slightly darker heading */
+        }
+
+        .form-container label {
+            display: block;
+            font-size: 0.9rem;
+            /* Slightly larger label */
+            font-weight: 600;
+            color: #718096;
+            /* Muted label color */
+            margin-bottom: 0.75rem;
+            /* Increased label margin */
+            transition: color 0.2s ease-in-out;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 1rem;
+            /* Increased input padding */
+            border: 2px solid #edf2f7;
+            /* Lighter border */
+            border-radius: 0.5rem;
+            /* More rounded input */
+            margin-bottom: 1.5rem;
+            /* Increased input margin */
+            font-size: 1rem;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: #4299e1;
+            /* Blue focus border */
+        }
+
+        .form-container input:hover {
+            border-color: #a0aec0;
+            /* Lighter blue focus border */
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #2d3748;
+            /* Darker button */
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            /* More rounded button */
+            font-weight: 700;
+            /* Bolder button text */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            /* Transform added */
+            font-size: 1.1rem;
+        }
+
+        .form-container button:hover {
+            background-color: #4a5568;
+            transform: scale(1.02);
+            /* Slight scale up on hover */
+        }
+
+        .form-container p {
+            text-align: center;
+            margin-top: 1.5rem;
+            /* Increased paragraph margin */
+            color: #a0aec0;
+            /* Lighter paragraph */
+        }
+
+        .form-container a {
+            color: #3182ce;
+            /* Brighter link color */
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .form-container a:hover {
+            text-decoration: underline;
+            color: #2b6cb0;
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            display: none;
+            background-color: #f0fff4;
+            /* Light green background */
+            color: #276749;
+            /* Darker green text */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fade-in-success 0.3s forwards ease-out;
+        }
+
+        @keyframes fade-in-success {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        .success-message button {
+            background-color: #276749;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            font-weight: bold;
+        }
+
+        .success-message button:hover {
+            background-color: #48a176;
+            transform: scale(1.02);
+        }
+
+        /* Card Styling */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Center cards horizontally */
+            margin-top: 2rem;
+        }
+
+        .card {
+            width: 300px;
+            /* Adjust card width */
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+            margin: 1rem;
+            /* Spacing between cards */
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .card img {
+            max-width: 100%;
+            /* Ensure image fits within card */
+            height: auto;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f8f8;
+            /* Light gray background */
+            padding: 1rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            /* Small text */
+            color: #777;
+            /* Muted text */
+            margin-top: auto;
+            /* Push footer to the bottom */
+            width: 100%;
+            /* Full width */
+        }
+
+        footer p {
+            margin: 0;
+            font-weight: bold;
+            /* Make copyright text bold */
+        }
+
+        /* Error Message Styling */
+        .error-message {
+            color: #e53e3e;
+            /* Red color */
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Contact Button Styling */
+        .contact-button {
+            background-color: #4299e1;
+            /* Blue background */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 0.5rem;
+            /* Add some spacing */
+        }
+
+        .contact-button:hover {
+            background-color: #2b6cb0;
+            /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <nav>
+        <div class="container mx-auto px-4">
+            <div class="font-bold">Discount and Offers</div>
+            <div>
+                <button onclick="showSignupForm()" class="btn-primary">Get Started</button>
+                <a href="signin.html" class="btn-secondary">See pricing</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card-container">
+        <div class="card">
+            <img src="exclusive-deal-banner-design-template-business-concept-flat-illustration-vector.jpg" alt="Card 1">
+            <h3>Exclusive Deals</h3>
+            <p>Unlock the best deals and discounts tailored to your needs.</p>
+            <a href="exclusivedeal.html" class="contact-button">Exclusive Deals</a>
+        </div>
+        <div class="card">
+            <img src="https://codilarcdn.gumlet.io/wp-content/uploads/2024/02/eCommerce-personalization-Impact.png?compress=true&quality=70&w=800&dpr=2.6" alt="Card 2">
+            <h3>Personalized Offers</h3>
+            <p>Get recommendations for offers you'll love.</p>
+            <a href="personalizedoffers.html" class="contact-button">Personalized Offers</a>
+        </div>
+        <div class="card">
+            <img src="save managemnet.jpeg" alt="Card 3">
+            <h3>Easy Management</h3>
+            <p>Manage all your discounts and offers in one place.</p>
+            <a href="management-page.html" class="contact-button">Manage Offers</a>
+        </div>
+        <div class="card">
+            <img src="mobile access.webp" alt="Card 4">
+            <h3>Mobile Access</h3>
+            <p>Access your offers on the go with our mobile app.</p>
+            <a href="mobile-app.html" class="contact-button">Get the App</a>
+        </div>
+        <div class="card">
+            <img src="time.jpg" alt="Card 5">
+            <h3>Save Time</h3>
+            <p>Stop searching for deals, we bring them to you.</p>
+            <a href="all-deals.html" class="contact-button">View All Deals</a>
+        </div>
+        <div class="card">
+            <img src="Technical-support1.jpeg" alt="Card 6">
+            <h3>Support</h3>
+            <p>We're here to help you get the most out of our platform.</p>
+            <a href="contact.html" class="contact-button">Contact Us</a>
+        </div>
+    </div>
+
+    <div id="signup-form" class="form-container">
+        <h2 class="text-2xl font-semibold">Create Your Account</h2>
+        <form class="space-y-6" id="signup-form-element">
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2" for="username">
+                    Username
+                </label>
+                <input class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    id="username" type="text" placeholder="Choose a username">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">
+                    Email Address
+                </label>
+                <input class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    id="email" type="email" placeholder="Your email">
+                <p id="email-error" class="error-message"></p>
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2" for="password">
+                    Password
+                </label>
+                <input class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    id="password" type="password" placeholder="Create a strong password">
+                <p id="password-error" class="error-message"></p>
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2" for="confirm-password">
+                    Confirm Password
+                </label>
+                <input class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    id="confirm-password" type="password" placeholder="Confirm your password">
+            </div>
+            <div class="flex items-center justify-center">
+                <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:shadow-outline transition duration-300"
+                    type="button" onclick="validateSignupForm()">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div id="signup-success" class="success-message">
+        <p>Signup successful! Click the button below to sign in.</p>
+        <button onclick="showSigninForm()" class="btn-primary">Sign In</button>
+    </div>
+
+    <div id="signin-form" class="form-container">
+        <h2 class="text-2xl font-semibold">Sign In</h2>
+        <form class="space-y-6" id="signin-form-element">
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2" for="signin-username">
+                    Username or Email
+                </label>
+                <input class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    id="signin-username" type="text" placeholder="Your username or email">
+                <p id="signin-username-error" class="error-message"></p>
+            </div>
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2" for="signin-password">
+                    Password
+                </label>
+                <input class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+                    id="signin-password" type="password" placeholder="Your password">
+                <p id="signin-password-error" class="error-message"></p>
+            </div>
+            <div class="flex items-center justify-center">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:shadow-outline transition duration-300"
+                    type="button" onclick="validateSigninForm()">
+                    Sign In
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSignupForm() {
+            document.getElementById('signup-form').style.display = 'block';
+        }
+
+        function showSuccessMessage() {
+            // In a real application, you would handle the actual signup process here.
+            // For this example, we'll just simulate a successful signup and show a message.
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('signup-success').style.display = 'block';
+        }
+
+        function showSigninForm() {
+            document.getElementById('signup-success').style.display = 'none';
+            document.getElementById('signin-form').style.display = 'block';
+        }
+
+        function redirectToMainPage() {
+            window.location.href = 'index.html'; // Assuming your main page is index.html
+        }
+
+        function validateSignupForm() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            let isValid = true;
+
+            // Email validation
+            if (!emailInput.value.includes('@')) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            } else {
+                emailError.textContent = ''; // Clear error message
+            }
+
+            // Password validation
+            if (passwordInput.value.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                isValid = false;
+            } else {
+                passwordError.textContent = ''; // Clear error message
+            }
+
+            if (isValid) {
+                showSuccessMessage(); // Proceed with "signup"
+            }
+        }
+
+        function validateSigninForm() {
+            const usernameInput = document.getElementById('signin-username');
+            const passwordInput = document.getElementById('signin-password');
+            const usernameError = document.getElementById('signin-username-error');
+            const passwordError = document.getElementById('signin-password-error');
+            let isValid = true;
+
+            // Username validation
+            if (usernameInput.value.trim() === '') {
+                usernameError.textContent = 'Please enter your username or email.';
+                isValid = false;
+            } else {
+                usernameError.textContent = ''; // Clear error message
+            }
+
+            // Password validation
+            if (passwordInput.value.trim() === '') {
+                passwordError.textContent = 'Please enter your password.';
+                isValid = false;
+            } else {
+                passwordError.textContent = ''; // Clear error message
+            }
+
+            if (isValid) {
+                redirectToMainPage(); // Proceed with sign-in (redirect)
+            }
+        }
+
+        function redirectToContactPage() {
+            window.location.href = 'personalizedoffers.html';
+        }
+    </script>
+</body>
+
+</html>

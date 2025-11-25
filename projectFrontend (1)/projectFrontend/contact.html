@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Contact Us</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+         body {
+             font-family: 'sans-serif';
+             margin: 0;
+             padding: 0;
+             background-color: #f7fafc; /* Light background */
+             color: #2d3748; /* Darker text */
+         }
+
+         .container {
+             max-width: 1000px;
+             margin: 0 auto;
+             padding: 2rem;
+         }
+
+         /* Navigation (Simplified) */
+         nav {
+             background-color: white;
+             padding: 1rem 0;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         }
+
+         nav .container {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+         }
+
+         nav .font-bold {
+             font-size: 1.25rem;
+             font-weight: 700;
+         }
+
+         nav ul {
+             list-style: none;
+             display: flex;
+             margin: 0;
+             padding: 0;
+         }
+
+         nav ul li {
+             margin-right: 1.5rem;
+         }
+
+         nav ul li a {
+             text-decoration: none;
+             color: #2d3748;
+             font-weight: 600;
+         }
+
+         nav ul li a:hover {
+             color: #4299e1;
+         }
+
+         /* Contact Information */
+         .contact-info {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: 2rem;
+             margin-top: 2rem;
+         }
+
+         .contact-card {
+             background-color: white;
+             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+             border-radius: 0.5rem;
+             padding: 2rem;
+             transition: transform 0.2s ease-in-out;
+         }
+
+         .contact-card:hover {
+             transform: translateY(-5px); /* Slight lift on hover */
+         }
+
+         .contact-card h2 {
+             font-size: 1.5rem;
+             font-weight: 700;
+             margin-bottom: 1rem;
+             color: #4a5568;
+         }
+
+         .contact-card p {
+             font-size: 1rem;
+             color: #718096;
+             margin-bottom: 0.5rem;
+         }
+
+         .contact-card a {
+             color: #3182ce;
+             text-decoration: none;
+             transition: color 0.2s ease-in-out;
+         }
+
+         .contact-card a:hover {
+             color: #2b6cb0;
+             text-decoration: underline;
+         }
+
+         .contact-card .icon {
+             font-size: 2rem; /* Adjust icon size */
+             margin-bottom: 1rem;
+             color: #4299e1; /* Icon color */
+         }
+
+         /* Contact Form (If you want to include one) */
+         .contact-form {
+             background-color: white;
+             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+             border-radius: 0.5rem;
+             padding: 2rem;
+             margin-top: 2rem;
+         }
+
+         .contact-form h2 {
+             font-size: 1.5rem;
+             font-weight: 700;
+             margin-bottom: 1.5rem;
+             color: #4a5568;
+         }
+
+         .form-group {
+             margin-bottom: 1.5rem;
+         }
+
+         .form-group label {
+             display: block;
+             font-size: 0.9rem;
+             font-weight: 600;
+             color: #718096;
+             margin-bottom: 0.5rem;
+         }
+
+         .form-group input,
+         .form-group textarea {
+             width: 100%;
+             padding: 1rem;
+             border: 2px solid #edf2f7;
+             border-radius: 0.5rem;
+             font-size: 1rem;
+             transition: border-color 0.2s ease-in-out;
+         }
+
+         .form-group input:focus,
+         .form-group textarea:focus {
+             outline: none;
+             border-color: #4299e1;
+         }
+
+         .form-group button {
+             background-color: #4299e1;
+             color: white;
+             padding: 1rem 2rem;
+             border: none;
+             border-radius: 0.5rem;
+             font-size: 1.1rem;
+             cursor: pointer;
+             transition: background-color 0.2s ease-in-out;
+         }
+
+         .form-group button:hover {
+             background-color: #2b6cb0;
+         }
+     </style>
+ </head>
+
+ <body>
+     <nav>
+         <div class="container">
+             <div class="font-bold">Contact Us</div>
+             <ul>
+                 <li><a href="index.html">Home</a></li>
+                 <li><a href="#">About</a></li>
+                 <li><a href="#">Services</a></li>
+             </ul>
+         </div>
+     </nav>
+
+     <div class="container">
+         <h1 class="text-3xl font-bold mt-8 mb-4">Get in Touch</h1>
+         <p class="text-lg text-gray-600 mb-8">We'd love to hear from you! Please use the following contact methods to
+             reach out.</p>
+
+         <div class="contact-info">
+             <div class="contact-card">
+                 <div class="icon">📞</div>
+                 <h2>Phone</h2>
+                 <p>Give us a call:</p>
+                 <a href="tel:+15551234567">+1 (555) 123-4567</a>
+             </div>
+
+             <div class="contact-card">
+                 <div class="icon">📧</div>
+                 <h2>Email</h2>
+                 <p>Send us an email:</p>
+                 <a href="mailto:info@example.com">info@example.com</a>
+             </div>
+
+             <div class="contact-card">
+                 <div class="icon">📍</div>
+                 <h2>Address</h2>
+                 <p>Visit us at:</p>
+                 <p>123 Main Street</p>
+                 <p>Anytown, CA 12345</p>
+             </div>
+
+             </div>
+
+         </div>
+ </body>
+
+ </html>

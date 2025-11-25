@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Width Discount Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Add some basic styling for the navbar */
+        nav {
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            margin-right: 1rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #007bff; /* Blue on hover */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-8">
+
+    <nav>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Deals</a>
+            <a href="#">Contact</a>
+        </div>
+        <div>
+            <a href="#">Login</a>
+        </div>
+    </nav>
+
+    <div class="bg-white shadow-md rounded-md overflow-hidden">
+        <div class="p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Product Showcase</h2>
+            <div id="product-list"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            </div>
+        </div>
+
+        <div class="bg-gray-50 px-6 py-6 border-t border-gray-200 rounded-b-md flex flex-col items-center">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Apply Global Discount</h3>
+            <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+                <div class="mb-2 sm:mb-0 w-full">
+                    <label for="globalDiscountType" class="block text-gray-700 text-sm font-bold mb-2">Discount
+                        Type:</label>
+                    <select id="globalDiscountType"
+                        class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="percentage">Percentage (%)</option>
+                        <option value="fixed">Fixed Amount</option>
+                    </select>
+                </div>
+                <div class="mb-2 sm:mb-0 w-full">
+                    <label for="globalDiscountValue" class="block text-gray-700 text-sm font-bold mb-2">Discount
+                        Value:</label>
+                    <input type="number" id="globalDiscountValue"
+                        class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Enter discount amount">
+                </div>
+            </div>
+            <button onclick="applyDiscountToAll()"
+                class="mt-6 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline">Apply
+                to All Products</button>
+            <p class="mt-4 text-sm text-gray-600 text-center">Apply the above discount to individual products below:</p>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: 'Awesome T-Shirt',
+                price: 499.00,
+                imageUrl: 'https://m.media-amazon.com/images/I/51vL3bOt4tL.jpg'
+            },
+            {
+                id: 2,
+                name: 'Cool Mug',
+                price: 289.00,
+                imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-u-REvGowjJLqDoQ2nunM7awC7SZ3QVdXYA&s'
+            },
+            {
+                id: 3,
+                name: 'Fancy Hat',
+                price: 547.00,
+                imageUrl: 'https://www.majorwear.co.uk/media/catalog/product/cache/00a37c1af0df5e40dcad3e450dc00c72/image/11085c00d/fancy-cowboy-hat-e38-339.jpg'
+            },
+            {
+                id: 4,
+                name: 'Stylish Backpack',
+                price: 2000.00,
+                imageUrl: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/jc/t/26/bc416a7f-89e1-4324-af6f-f2dec27e024f.jpg'
+            },
+            {
+                id: 5,
+                name: 'Wireless Headphones',
+                price: 1200.00,
+                imageUrl: 'https://i5.walmartimages.com/asr/c5a2fa63-7449-4ea2-9b6d-7daa548e27c1.e887d92b82261a1b326514b331e636f6.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF'
+            },
+            {
+                id: 6,
+                name: 'Smartwatch',
+                price: 1800.00,
+                imageUrl: 'https://ptron.in/cdn/shop/files/B0C81WSDV1.MAIN.jpg?v=1690546549'
+            },
+            {
+                id: 7,
+                name: 'Comfortable Shoes',
+                price: 6500.00,
+                imageUrl: 'https://img-new.cgtrader.com/items/4790328/d3f6d19c82/large/nike-air-jordan-1-retro-high-chicago-bulls-3d-model-d3f6d19c82.jpg'
+            },
+            {
+                id: 8,
+                name: 'Designer Sunglasses',
+                price: 950.00,
+                imageUrl: 'https://www.eye-oo.com/cdn/shop/articles/Must_Have_Sunglasses_2024.png?crop=center&height=940&v=1733416017&width=940'
+            },
+            {
+                id: 9,
+                name: 'Gaming Mouse',
+                price: 750.00,
+                imageUrl: 'https://www.pulsar.gg/cdn/shop/files/pulsar-x2-mini-pink-gaming-mouse-main-n-64e8246b0a13e.webp?v=1693981665'
+            },
+            {
+                id: 10,
+                name: 'Keyboard',
+                price: 1000.00,
+                imageUrl: 'https://pinkgaming.shop/cdn/shop/files/pink-wireless-104-keys-membrane-keyboard.png?v=1717491298'
+            },
+            {
+                id: 11,
+                name: 'Webcam',
+                price: 3799.00,
+                imageUrl: 'https://restream.io/blog/content/images/2023/07/how-to-use-webcam.jpg'
+            },
+            {
+                id: 12,
+                name: 'External Hard Drive',
+                price: 16999.00,
+                imageUrl: 'https://askleo.com/wp-content/uploads/2018/05/external-drive.jpg'
+            },
+            {
+                id: 13,
+                name: 'Tablet',
+                price: 18000.00,
+                imageUrl: 'https://www.officemax.co.nz/Images/ProductImages/500/11897591.jpeg'
+            },
+            {
+                id: 14,
+                name: 'Printer',
+                price: 32000.00,
+                imageUrl: 'https://4.img-dpreview.com/files/p/TS520x520~articles/1690328781/ES_Pro_4900_w.image_resize.jpeg?v=5726'
+            },
+            {
+                id: 15,
+                name: 'Monitor',
+                price: 10990.00,
+                imageUrl: 'https://www.power-x.in/cdn/shop/files/238-fhd-frameless-led-monitorpowerx-the-technology-people-520037.jpg?v=1739959766'
+            },
+            {
+                id: 16,
+                name: 'Coffee Maker',
+                price: 1750.00,
+                imageUrl: 'https://m.media-amazon.com/images/I/71ecG7S6ayL._AC_SL1500_.jpg'
+            },
+            {
+                id: 17,
+                name: 'Ps5',
+                price: 45000.00,
+                imageUrl: 'https://variety.com/wp-content/uploads/2024/09/Sony-PlayStation-Pro-5.png?w=1000&h=667&crop=1'
+            },
+            {
+                id: 18,
+                name: 'I Phone',
+                price: 80000.00,
+                imageUrl: 'https://casesvilla.com/cdn/shop/files/iPhone15ProMaxNaturalTitaniumGreyCase_ca1784a5-c2d2-408d-91e7-5c14ef37b7c6.jpg?v=1702030161'
+            },
+        ];
+
+        function displayProducts() {
+            const productListDiv = document.getElementById('product-list');
+            productListDiv.innerHTML = '';
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'bg-white rounded-md shadow-sm p-4 flex flex-col items-center';
+                productDiv.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.name}" class="w-32 h-32 object-cover rounded-md mb-2">
+                    <h4 class="text-md font-semibold text-gray-800 text-center mb-1">${product.name}</h4>
+                    <p class="text-gray-600 text-center">Price: ₹<span id="price-${product.id}">${product.price.toFixed(2)}</span></p>
+                    <p class="text-sm text-green-500 font-semibold text-center" id="discounted-price-${product.id}"></p>
+                    <button onclick="applyDiscountToProduct(${product.id})" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-md px-3 py-1 text-sm">Apply Discount</button>
+                `;
+                productListDiv.appendChild(productDiv);
+            });
+        }
+
+        function applyDiscountToAll() { // Corrected function name
+            const discountType = document.getElementById('globalDiscountType').value;
+            const discountValue = parseFloat(document.getElementById('globalDiscountValue').value);
+
+            if (isNaN(discountValue)) {
+                alert('Please enter a valid global discount value.');
+                return;
+            }
+
+            products.forEach(product => { // Iterating through all the products
+                updateProductDisplay(product.id, discountType, discountValue);
+            });
+        }
+
+        function applyDiscountToProduct(productId) {
+            const discountType = document.getElementById('globalDiscountType').value;
+            const discountValue = parseFloat(document.getElementById('globalDiscountValue').value);
+
+            if (isNaN(discountValue)) {
+                alert('Please enter a valid global discount value.');
+                return;
+            }
+            updateProductDisplay(productId, discountType, discountValue);
+        }
+
+        function updateProductDisplay(productId, discountType, discountValue) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                let discountedPrice = product.price;
+                let discountInfo = '';
+
+                if (discountType === 'percentage') {
+                    discountedPrice = product.price * (1 - (discountValue / 100));
+                    discountInfo = `(${discountValue}% off)`;
+                } else if (discountType === 'fixed') {
+                    discountedPrice = Math.max(0, product.price - discountValue);
+                    discountInfo = `(₹${discountValue.toFixed(2)} off)`;
+                }
+
+                document.getElementById(`price-${productId}`).textContent = product.price.toFixed(2);
+                const discountedPriceElement = document.getElementById(`discounted-price-${productId}`);
+                if (discountedPrice.toFixed(2) !== product.price.toFixed(2)) {
+                    discountedPriceElement.textContent = `Discounted Price: ₹${discountedPrice.toFixed(2)} ${discountInfo}`;
+                } else {
+                    discountedPriceElement.textContent = '';
+                }
+            }
+        }
+
+        // Initial display of products
+        displayProducts();
+    </script>
+</body>
+
+</html>

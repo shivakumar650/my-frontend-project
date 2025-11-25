@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Improved Navbar */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #718096;
+            font-weight: 600;
+            transition: color 0.2s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #4299e1;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #edf2f7;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Layout Variations */
+        .content-layout-1 {
+            display: flex;
+            align-items: center;
+        }
+
+        .content-layout-1 .content-image {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .content-layout-1 .content-text {
+            flex: 2;
+        }
+
+        .content-layout-2 {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+
+        .content-layout-2 .content-image {
+            flex: 1;
+            margin-left: 2rem;
+        }
+
+        .content-layout-2 .content-text {
+            flex: 2;
+        }
+
+        .content-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #4299e1;
+            color: white;
+            border-radius: 0.5rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section a {
+            background-color: white;
+            color: #4299e1;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .cta-section a:hover {
+            background-color: #edf2f7;
+            color: #2b6cb0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Discount Hub</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">New Arrivals</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Mobile Access</h1>
+            <p>
+                Stay connected to your discounts and offers with our mobile app.
+                Access deals on the go and never miss a saving opportunity.
+            </p>
+        </div>
+
+        <div class="content-section content-layout-1">
+            <div class="content-image">
+                <img src="https://via.placeholder.com/400x300/68d391/ffffff?text=App+Interface" alt="App Interface">
+            </div>
+            <div class="content-text">
+                <h2>App Features</h2>
+                <p>
+                    Our mobile app provides a user-friendly interface to:
+                </p>
+                <ul>
+                    <li>Browse and search for offers.</li>
+                    <li>Save your favorite deals.</li>
+                    <li>Receive push notifications for new offers.</li>
+                    <li>Redeem coupons directly from your phone.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section content-layout-2">
+            <div class="content-image">
+                <img src="https://via.placeholder.com/400x300/68d391/ffffff?text=Download+Options"
+                    alt="Download Options">
+            </div>
+            <div class="content-text">
+                <h2>Download the App</h2>
+                <p>
+                    Download our app today from the App Store or Google Play Store.
+                    [Include links to the app stores or QR codes.]
+                </p>
+                <p>
+                    Start saving on the go!
+                </p>
+            </div>
+        </div>
+
+        <div class="content-section content-layout-1">
+            <div class="content-image">
+                <img src="https://via.placeholder.com/400x300/68d391/ffffff?text=Benefits" alt="Benefits">
+            </div>
+            <div class="content-text">
+                <h2>Benefits of Mobile Access</h2>
+                <p>
+                    <ul>
+                        <li>Convenient access to deals anytime, anywhere.</li>
+                        <li>Real-time notifications for time-sensitive offers.</li>
+                        <li>Seamless integration with your shopping experience.</li>
+                        <li>Reduced paper waste from physical coupons.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Get the Mobile App Now</h2>
+            <a href="#">Download Our App</a>
+        </div>
+    </div>
+</body>
+
+</html>

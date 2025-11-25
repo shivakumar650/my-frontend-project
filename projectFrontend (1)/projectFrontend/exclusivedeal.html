@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Deals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* More common font */
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6; /* Lighter background */
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Improved Navbar */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-right: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #718096;
+            font-weight: 600;
+            transition: color 0.2s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #4299e1;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #edf2f7;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Deal Sections */
+        .deal-section {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .deal-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+        }
+
+        .deal-section p {
+            font-size: 1.1rem;
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        .deal-highlight {
+            color: #e53e3e; /* Red for emphasis */
+            font-weight: bold;
+        }
+
+        /* Layout Variations */
+        .deal-layout-1 {
+            display: flex;
+            align-items: center;
+        }
+
+        .deal-layout-1 .deal-image {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .deal-layout-1 .deal-content {
+            flex: 2;
+        }
+
+        .deal-layout-2 {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse; /* Reverse layout */
+        }
+
+        .deal-layout-2 .deal-image {
+            flex: 1;
+            margin-left: 2rem; /* Left margin instead of right */
+        }
+
+        .deal-layout-2 .deal-content {
+            flex: 2;
+        }
+
+        .deal-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #4299e1;
+            color: white;
+            border-radius: 0.5rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section a {
+            background-color: white;
+            color: #4299e1;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .cta-section a:hover {
+            background-color: #edf2f7;
+            color: #2b6cb0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Discount Hub</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">New Arrivals</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Unlock Incredible Savings</h1>
+            <p>
+                Discover a world of exclusive deals and offers tailored just for you.
+                Save big on your favorite products and services.
+            </p>
+        </div>
+
+        <div class="deal-section deal-layout-1">
+            <div class="deal-image">
+                <img src="https://via.placeholder.com/400x300/e6e9ed/c0c6ce?text=Deal+Image+1" alt="Deal 1">
+            </div>
+            <div class="deal-content">
+                <h2>Electronics Super Sale</h2>
+                <p>
+                    Get up to <span class="deal-highlight">50% off</span> on the latest smartphones, laptops, and
+                    accessories.
+                    Upgrade your tech and save big.
+                </p>
+                <p>
+                    [Add more details about the electronics sale, specific brands, dates, etc.]
+                </p>
+            </div>
+        </div>
+
+        <div class="deal-section deal-layout-2">
+            <div class="deal-image">
+                <img src="https://via.placeholder.com/400x300/e6e9ed/c0c6ce?text=Deal+Image+2" alt="Deal 2">
+            </div>
+            <div class="deal-content">
+                <h2>Fashion Flash Sale</h2>
+                <p>
+                    Revamp your wardrobe with our fashion flash sale.
+                    Enjoy <span class="deal-highlight">40% off</span> on clothing, shoes, and accessories.
+                    Don't miss out on the latest trends.
+                </p>
+                <p>
+                    [Add more details about the fashion sale, specific styles, brands, etc.]
+                </p>
+            </div>
+        </div>
+
+        <div class="deal-section deal-layout-1">
+            <div class="deal-image">
+                <img src="https://via.placeholder.com/400x300/e6e9ed/c0c6ce?text=Deal+Image+3" alt="Deal 3">
+            </div>
+            <div class="deal-content">
+                <h2>Home & Garden Savings</h2>
+                <p>
+                    Spruce up your living space with our home & garden savings.
+                    Find discounts up to <span class="deal-highlight">30% off</span> on furniture, decor, and outdoor
+                    essentials.
+                </p>
+                <p>
+                    [Add more details about the home & garden sale, specific items, etc.]
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Start Saving?</h2>
+            <a href="#">Explore All Deals</a>
+        </div>
+    </div>
+</body>
+
+</html>
